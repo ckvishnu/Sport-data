@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 1</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+</head>
+<body>
+    <style>
+        #a1{
+            padding: 10px;
+            margin-top: 3rem;
+        }
+    </style>
+    <div class="container">
+    <h1 id="a1" class="text-center text-warning bg-dark">Player Data</h1>
+    <br>
+    <form action="add_details" method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-5">
+                Enter Player Name : <input type="text" name="name" required placeholder="Name" class="form-control" required><br>
+                Enter Email : <br> <input type="text" name="email" required placeholder="example@gmail.com" class="form-control" required><br>
+                Country : <br> <input type="text" name="country" class="form-control" required><br></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-5">
+                Game : <input type="text" name="game" class="form-control" required><br>
+                Score : <br><input type="text" name="score" class="form-control" required><br>
+                <input style="margin-top: 1.5rem;" type="submit" value="submit" class="btn btn-success">                  
+        </div>
+
+    </form>
+    <hr>
+    <h3 style="padding: 10px;" class="text-center text-warning bg-dark">Display data</h3>
+    <form action="display_data">
+    <h4 style="margin-top: 7px;">Click here to display data!!</h4>
+
+    <table class="table table-hover table-info bg-success font-weight-bold">
+        <tr>
+            <th><b>Player Name</b></th>
+            <th><b>Player Email</b></th>
+            <th><b>Country</b></th>
+            <th><b>No of Games</b></th>
+            <th><b>Total Score</b></th>
+        </tr>
+        {% for i in player %}
+        <tr>
+            <td>{{i.name}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.country}}</td>
+            <td>{{i.number_of_games}}</td>
+            <td>{{i.total_score}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <input style="margin-top: 0.7rem;" type="submit" value="display" class="btn btn-success">
+    </form>
+</div>
+    
+</body>
+</html>
